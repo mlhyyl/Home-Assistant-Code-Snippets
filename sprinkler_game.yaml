@@ -20,6 +20,40 @@ input_boolean:
   game_sprinklers_random_duration:
 
 # automations.yaml
+- alias: game_loop
+  id: game_loop
+  mode: restart
+  trigger:
+    - platform: state
+      entity_id: input_boolean.game_sprinklers_on_off
+  action:
+    - condition: state
+      entity_id: input_boolean.game_sprinklers_random_duration
+      state: "off"
+    - variables:
+        all_sprinklers:
+          [
+            "switch.terracesprinkler",
+            "switch.terracesprinkler2",
+            "switch.middlesprinkler",
+            "switch.gatesprinkler",
+          ]
+    - repeat:
+        while: '{{ is_state("input_boolean.game_sprinklers_on_off", "on") and repeat.index <= (states.input_number.sprinkler_game_cycles.state | int) }}'
+        sequence:
+          - variables:
+              sprinkler: 'switch.{{["terracesprinkler","terracesprinkler2","middlesprinkler","gatesprinkler"]|random}}'
+          - service: switch.turn_on
+            target:
+              entity_id: "{{ sprinkler }}"
+          - delay: '{{ states("input_number.sprinkler_game_seconds") }}'
+          - service: switch.turn_off
+            target:
+              entity_id: "{{ sprinkler }}"
+    - service: input_boolean.turn_off
+      target:
+        entity_id: input_boolean.game_sprinklers_on_off
+
 - alias: game_loop_random
   id: game_loop_random
   mode: restart
@@ -33,16 +67,16 @@ input_boolean:
     - variables:
         all_sprinklers:
           [
-            "switch.sprinkler1",
-            "switch.sprinkler2",
-            "switch.sprinkler3",
-            "switch.sprinkler4",
+            "switch.terracesprinkler",
+            "switch.terracesprinkler2",
+            "switch.middlesprinkler",
+            "switch.gatesprinkler",
           ]
     - repeat:
         while: '{{ is_state("input_boolean.game_sprinklers_on_off", "on") and repeat.index <= (states.input_number.sprinkler_game_cycles.state | int) }}'
         sequence:
           - variables:
-              sprinkler: 'switch.{{["sprinkler1","sprinkler2","sprinkler3","sprinkler4"]|random}}'
+              sprinkler: 'switch.{{["terracesprinkler","terracesprinkler2","middlesprinkler","gatesprinkler"]|random}}'
           - service: switch.turn_on
             target:
               entity_id: "{{ sprinkler }}"
