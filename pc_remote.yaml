@@ -1,0 +1,411 @@
+# in order to remote control a pc/mac
+# unified remote has to be installed
+# and running on a pc/mac within the
+# same network home assistant is.
+
+# this code consists of two parts:
+# - dashboard card code
+# - remotes.yml code
+
+# dashboard card code
+type: vertical-stack
+cards:
+  - type: grid
+    title: null
+    cards:
+      - type: button
+        entity: ''
+        tap_action:
+          action: call-service
+          service: unified_remote.call
+          service_data:
+            action: play_pause
+            remote: youtube
+        icon: 'mdi:play'
+        name: null
+        show_icon: true
+        show_state: true
+      - type: button
+        entity: ''
+        tap_action:
+          action: call-service
+          service: unified_remote.call
+          service_data:
+            action: volume_up
+            remote: youtube
+        icon: 'mdi:volume-plus'
+        name: null
+        show_icon: true
+        show_state: true
+      - type: button
+        entity: ''
+        tap_action:
+          action: call-service
+          service: unified_remote.call
+          service_data:
+            action: volume_down
+            remote: youtube
+        icon: 'mdi:volume-minus'
+        name: null
+        show_icon: true
+        show_state: true
+      - type: button
+        entity: ''
+        tap_action:
+          action: call-service
+          service: unified_remote.call
+          service_data:
+            action: previous
+            remote: youtube
+        icon: 'mdi:skip-previous'
+        name: null
+        show_icon: true
+        show_state: true
+      - type: button
+        entity: ''
+        tap_action:
+          action: call-service
+          service: unified_remote.call
+          service_data:
+            action: next
+            remote: youtube
+        icon: 'mdi:skip-next'
+        name: null
+        show_icon: true
+        show_state: true
+      - type: button
+        entity: ''
+        tap_action:
+          action: call-service
+          service: unified_remote.call
+          service_data:
+            action: fullscreen
+            remote: youtube
+        icon: 'mdi:overscan'
+        name: null
+        show_icon: true
+        show_state: true
+    columns: 6
+    square: true
+  - type: grid
+    title: null
+    cards:
+      - type: button
+        entity: ''
+        tap_action:
+          action: call-service
+          service: unified_remote.call
+          service_data:
+            action: launch
+            remote: netflix
+        icon: 'mdi:netflix'
+        name: null
+        show_icon: true
+        show_state: true
+      - type: button
+        entity: ''
+        tap_action:
+          action: call-service
+          service: unified_remote.call
+          service_data:
+            action: play_pause
+            remote: netflix
+        icon: 'mdi:play'
+        name: null
+        show_icon: true
+        show_state: true
+      - type: button
+        entity: ''
+        tap_action:
+          action: call-service
+          service: unified_remote.call
+          service_data:
+            action: volume_mute
+            remote: netflix
+        icon: 'mdi:volume-mute'
+        name: null
+        show_icon: true
+        show_state: true
+      - type: button
+        entity: ''
+        tap_action:
+          action: call-service
+          service: unified_remote.call
+          service_data:
+            action: volume_up
+            remote: netflix
+        icon: 'mdi:volume-plus'
+        name: null
+        show_icon: true
+        show_state: true
+      - type: button
+        entity: ''
+        tap_action:
+          action: call-service
+          service: unified_remote.call
+          service_data:
+            action: volume_down
+            remote: netflix
+        icon: 'mdi:volume-minus'
+        name: null
+        show_icon: true
+        show_state: true
+      - type: button
+        entity: ''
+        tap_action:
+          action: call-service
+          service: unified_remote.call
+          service_data:
+            action: fullscreen
+            remote: netflix
+        icon: 'mdi:overscan'
+        name: null
+        show_icon: true
+        show_state: true
+    columns: 6
+    square: true
+  - type: grid
+    title: null
+    cards:
+      - type: button
+        entity: ''
+        tap_action:
+          action: call-service
+          service: unified_remote.call
+          service_data:
+            action: home
+            remote: chrome
+        icon: 'mdi:home-plus'
+        name: null
+        show_icon: true
+        show_state: true
+      - type: button
+        entity: ''
+        tap_action:
+          action: call-service
+          service: unified_remote.call
+          service_data:
+            action: refresh
+            remote: chrome
+        icon: 'mdi:refresh'
+        name: null
+        show_icon: true
+        show_state: true
+      - type: button
+        entity: ''
+        tap_action:
+          action: call-service
+          service: unified_remote.call
+          service_data:
+            action: new_tab
+            remote: chrome
+        icon: 'mdi:plus'
+        name: null
+        show_icon: true
+        show_state: true
+      - type: button
+        entity: ''
+        tap_action:
+          action: call-service
+          service: unified_remote.call
+          service_data:
+            action: previous_tab
+            remote: chrome
+        icon: 'mdi:chevron-left'
+        name: null
+        show_icon: true
+        show_state: true
+      - type: button
+        entity: ''
+        tap_action:
+          action: call-service
+          service: unified_remote.call
+          service_data:
+            action: next_tab
+            remote: chrome
+        icon: 'mdi:chevron-right'
+        name: null
+        show_icon: true
+        show_state: true
+      - type: button
+        entity: ''
+        tap_action:
+          action: call-service
+          service: unified_remote.call
+          service_data:
+            action: close_tab
+            remote: chrome
+        icon: 'mdi:close'
+        name: null
+        show_icon: true
+        show_state: true
+    columns: 6
+    square: true
+  - type: grid
+    title: null
+    cards:
+      - type: button
+        entity: ''
+        tap_action:
+          action: call-service
+          service: unified_remote.call
+          service_data:
+            action: shutdown
+            remote: power
+        icon: 'mdi:power'
+        name: null
+        show_icon: true
+        show_state: true
+      - type: button
+        entity: ''
+        tap_action:
+          action: call-service
+          service: unified_remote.call
+          service_data:
+            action: sleep
+            remote: power
+        icon: 'mdi:sleep'
+        name: null
+        show_icon: true
+        show_state: true
+      - type: button
+        entity: ''
+        tap_action:
+          action: call-service
+          service: unified_remote.call
+          service_data:
+            action: lock
+            remote: power
+        icon: 'mdi:lock'
+        name: null
+        show_icon: true
+        show_state: true
+      - type: button
+        entity: ''
+        tap_action:
+          action: call-service
+          service: unified_remote.call
+          service_data:
+            action: hibernate
+            remote: power
+        icon: 'mdi:pause'
+        name: null
+        show_icon: true
+        show_state: true
+      - type: button
+        entity: ''
+        tap_action:
+          action: call-service
+          service: unified_remote.call
+          service_data:
+            action: restart
+            remote: power
+        icon: 'mdi:refresh'
+        name: null
+        show_icon: true
+        show_state: true
+      - type: button
+        entity: ''
+        tap_action:
+          action: call-service
+          service: unified_remote.call
+          service_data:
+            action: wol
+            remote: power
+        icon: 'mdi:alarm'
+        name: null
+        show_icon: true
+        show_state: true
+    columns: 6
+    square: true
+
+# config/custom_components/unified_remote/cli/remotes.yml file
+remotes:
+  prime_video:
+    id: "Unified.AmazonPrimeVideo"
+    type: media_video
+  monitor:
+    id: Unified.Monitor
+    type: monitor
+  power:
+    id: Unified.Power
+    type: power
+  chrome: 
+    id: Unified.Chrome
+    type: browser
+    controls:
+      - "close_tab"
+      - "new_tab"
+      - "previous_tab"
+      - "next_tab"
+      - "home"
+      - "refresh"
+  netflix:
+    id: Unified.NetflixWeb
+    type: media_video
+    controls:
+      - "window"
+      - "skip_intro"
+      - "launch"
+      - "volume_down"
+      - "volume_mute"
+      - "volume_up"
+      - "play_pause"
+      - "fullscreen"
+      - "rewind"
+      - "forward"
+  youtube:
+    id: Unified.YouTubeWeb
+    type: media
+    controls:
+      - "volume_down"
+      - "volume_up"
+      - "previous"
+      - "next"
+      - "play_pause"
+      - "fullscreen"
+types:
+  media:
+    controls:
+      - "volume_down"
+      - "volume_mute"
+      - "volume_up"
+      - "previous"
+      - "next"
+      - "stop"
+      - "play_pause"
+  media_video:
+    controls:
+      - "volume_down"
+      - "volume_mute"
+      - "volume_up"
+      - "play_pause"
+      - "launch"
+      - "fullscreen"
+      - "rewind"
+      - "forward"
+  monitor:
+    controls:
+      - "turn_on"
+      - "turn_off"
+      - "standby"
+      - "internal" # Computer only mode
+      - "external" # Projector only mode
+  power:
+    controls:
+      - "logoff"
+      - "lock"
+      - "abort"
+      - "restart"
+      - "shutdown"
+      - "hibernate"
+      - "sleep"
+      - "wol"
+  browser:
+    controls:
+      - "close_tab"
+      - "new tab"
+      - "previous_tab"
+      - "next_tab"
+      - "home"
+      - "refresh"
