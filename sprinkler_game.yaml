@@ -1,0 +1,55 @@
+# this code will create 4 entities:
+# - one entity to define duration for a sprinkler to be on
+# - one entity to define how many times the game will repeat
+# - one entity to turn on and off the game
+# - one entity to by-pass a defined duration and use a random 
+#   duration ranging from 5 to 20 seconds
+
+# configuration.yaml
+input_number:
+  sprinkler_game_seconds:
+    min: 0
+    max: 20
+    step: 1
+  sprinkler_game_cycles:
+    min: 5
+    max: 125
+    step: 5
+input_boolean:
+  game_sprinklers_on_off:
+  game_sprinklers_random_duration:
+
+# automations.yaml
+- alias: game_loop_random
+  id: game_loop_random
+  mode: restart
+  trigger:
+    - platform: state
+      entity_id: input_boolean.game_sprinklers_on_off
+  action:
+    - condition: state
+      entity_id: input_boolean.game_sprinklers_random_duration
+      state: "on"
+    - variables:
+        all_sprinklers:
+          [
+            "switch.sprinkler1",
+            "switch.sprinkler2",
+            "switch.sprinkler3",
+            "switch.sprinkler4",
+          ]
+    - repeat:
+        while: '{{ is_state("input_boolean.game_sprinklers_on_off", "on") and repeat.index <= (states.input_number.sprinkler_game_cycles.state | int) }}'
+        sequence:
+          - variables:
+              sprinkler: 'switch.{{["sprinkler1","sprinkler2","sprinkler3","sprinkler4"]|random}}'
+          - service: switch.turn_on
+            target:
+              entity_id: "{{ sprinkler }}"
+          - delay: "{{ range(5, 21) | random }}"
+          - service: switch.turn_off
+            target:
+              entity_id: "{{ sprinkler }}"
+    - service: input_boolean.turn_off
+      target:
+        entity_id: input_boolean.game_sprinklers_on_off

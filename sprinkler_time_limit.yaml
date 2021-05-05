@@ -1,0 +1,59 @@
+# this code will create 2 entities:
+# - one entity to set a time limit for the sprinklers to run
+# - one entity to determine if the time limit is going to be applied
+# in case of no limit, sprinklers will turn off automatically after 20 minutes
+
+# configuration.yaml
+input_number:
+  sprinkler_timer_minutes:
+    min: 0
+    max: 60
+    step: 2
+input_boolean:
+  sprinkler_timer_limit:
+
+# automations.yaml
+- id: "2020050700011"
+  alias: Sprinkler with time limit
+  condition:
+    - condition: state
+      entity_id: input_boolean.sprinkler_timer_limit
+      state: "on"
+  trigger:
+    - platform: state
+      entity_id:
+        - group.sprinklers
+      to: "on"
+  action:
+    - delay: 00:{{ states('input_number.sprinkler_timer_minutes') | int }}:00
+    - service: switch.turn_off
+      entity_id:
+        - group.sprinklers
+- id: "2020050700012"
+  alias: Sprinkler no time limit
+  condition:
+    - condition: state
+      entity_id: input_boolean.sprinkler_timer_limit
+      state: "off"
+  trigger:
+    - platform: state
+      entity_id:
+        - group.sprinklers
+      to: "on"
+  action:
+    - delay: 00:20:00
+    - service: switch.turn_off
+      entity_id:
+        - group.sprinklers
+
+# groups.yaml
+sprinklers:
+  name: Sprinklers
+  icon: mdi:sprinkler-variant
+  entities:
+    - switch.sprinkler1
+    - switch.sprinkler2
+    - switch.sprinkler3
+    - switch.sprinkler4
+    - switch.sprinkler5
+    - switch.sprinkler6
