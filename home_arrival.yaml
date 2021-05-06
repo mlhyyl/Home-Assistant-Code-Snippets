@@ -1,0 +1,39 @@
+# this code will create one enity which
+# will be tracked in order to determine
+# if the tracked person is arriving and
+# will turn on defined lights in such case
+
+# known_devices.yaml
+life360_me:
+  name: life360_me
+  mac:
+  icon:
+  picture: https://www.life360.com/img/user_images/xyz.jpg?fd=2
+  track: true
+
+# automations.yaml
+- id: "2020050700001"
+  alias: Arrival
+  description: ""
+  trigger:
+    - platform: state
+      entity_id: device_tracker.life360_me
+      from: away
+      to: home
+  condition:
+    - condition: sun
+      after: sunset
+  action:
+    - service: switch.turn_on
+      entity_id:
+          - switch.light1
+          - switch.light2
+          - switch.light3
+    - delay: "00:05:00"
+    - service: switch.turn_off
+      target:
+        entity_id:
+          - switch.light1
+          - switch.light2
+          - switch.light3
+  mode: single
