@@ -3,10 +3,16 @@
 # and running on a pc/mac within the
 # same network home assistant is.
 
-# this code consists of two parts:
+# this code consists of three parts:
+# - configuration.yaml code
 # - dashboard card code
 # - remotes.yml code
 
+# configuration.yaml
+unified_remote:
+  hosts:
+    - host: xxx.xxx.xxx.xxx 
+    
 # dashboard card code
 type: vertical-stack
 cards:
