@@ -1,0 +1,28 @@
+# this code will create 4 entities
+# showing their connection status.
+
+#configuration.yaml
+binary_sensor:
+  - platform: ping
+    host: xxx.xxx.xxx.xxx
+    name: "Home PC"
+    count: 2
+    scan_interval: 30
+
+  - platform: ping
+    host: xxx.xxx.xxx.xxx
+    name: "Laptop"
+    count: 2
+    scan_interval: 30
+
+  - platform: ping
+    host: xxx.xxx.xxx.xxx
+    name: "TV"
+    count: 2
+    scan_interval: 30
+
+  - platform: ping
+    host: xxx.xxx.xxx.xxx
+    name: "Playstation"
+    count: 2
+    scan_interval: 30
